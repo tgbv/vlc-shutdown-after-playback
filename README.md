@@ -27,4 +27,7 @@ Now each time your movie/playlist ends, a pop-up will bounce on your screen warn
 <img src="https://github.com/tgbv/vlc-shutdown-after-playback/blob/main/screenshots/3.png?raw=true" />
 
 
-This app is tested for VLC 3.0.20, it should work with all 3.x.x versions
+## Compatibility
+
+- Tested on VLC 3.0.20, it should work with all 3.x.x versions.
+- Tested on Windows XP Service Pack 3. It should work with XP, Vista, 7, 8, 10, 11, etc.
