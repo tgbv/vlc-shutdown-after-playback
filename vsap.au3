@@ -6,11 +6,11 @@
 #AutoIt3Wrapper_UseUpx=y
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_UseX64=y
-#AutoIt3Wrapper_Res_Description=VSAP licensed under MIT
+#AutoIt3Wrapper_Res_Description=VSAP 2.0 licensed under MIT
 #AutoIt3Wrapper_Res_Fileversion=2.0.0.0
 #AutoIt3Wrapper_Res_ProductName=VSAP
 #AutoIt3Wrapper_Res_ProductVersion=2.0.0.0
-#AutoIt3Wrapper_Res_LegalCopyright=Teodor Ionescu (MIT License)
+#AutoIt3Wrapper_Res_LegalCopyright=Teodor Ionescu / MIT Licensed
 #AutoIt3Wrapper_Res_Language=1033
 #AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -36,6 +36,10 @@ EndIf
 	Const $CONFIG_DIR = @AppDataDir & "\tgbv\vsap\"
 	Const $EXECUTABLE_PATH = $CONFIG_DIR & "vsap.exe"
 	Const $REPORTING_SIGNATURE = "If problem persists, please report it at https://github.com/tgbv/vlc-shutdown-after-playback/issues"
+	Const $LICENSE = 'VSAP 2.0' & @LF & @LF & "Copyright (c) 2024 Teodor Ionescu" & @LF & @LF & _
+'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:' & @LF & @LF & _
+'The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.' & @LF & @LF & _
+'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.' & @LF & @LF & 'Updates can be found at: https://github.com/tgbv/vlc-shutdown-after-playback'
 
 	Const $ACTION_SHUTDOWN = 0
 	Const $ACTION_SLEEP = 1
@@ -53,7 +57,6 @@ Else
 	RenderSettingsGui()
 EndIf
 #EndRegion
-
 
 ;;;;;;;;;;;;;;;;;;
 Func SetCfg($name, $value, $type = "REG_DWORD")
@@ -87,7 +90,7 @@ EndFunc
 
 ; Render GUI settings panel
 Func RenderSettingsGui()
-	$Window = GUICreate("VSAP Settings", 220, 250, -1, -1, -1)
+	$Window = GUICreate("VSAP Settings", 220, 270, -1, -1, -1)
 
 	#Region launch on startup
 		$LaunchOnStartupCheckbox = GUICtrlCreateCheckbox("Launch on Windows startup", 10, 15, 300, 20)
@@ -114,11 +117,21 @@ Func RenderSettingsGui()
 		$StartWatcherButton = GUICtrlCreateButton("Start Watcher", 10, 200, 200, 40)
 	#EndRegion
 
+	#Region about menu
+		$Menu = GUICtrlCreateMenu("Menu")
+		$AboutMenuBtn = GUICtrlCreateMenuItem("About", $Menu)
+	#EndRegion
+
 	GUISetState(@SW_SHOW)
 
 	#Region Events listener
 	While 1
 		$msg = GUIGetMsg()
+
+		; on $AboutMenuBtn
+		If $msg == $AboutMenuBtn Then
+			MsgBox(64, "VSAP", $LICENSE)
+		EndIf
 
 		; On exit
 		If $msg == $GUI_EVENT_CLOSE Then
