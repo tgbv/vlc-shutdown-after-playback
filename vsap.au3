@@ -7,10 +7,12 @@
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Description=VSAP licensed under MIT
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_Fileversion=2.0.0.0
 #AutoIt3Wrapper_Res_ProductName=VSAP
-#AutoIt3Wrapper_Res_ProductVersion=1.0.0
+#AutoIt3Wrapper_Res_ProductVersion=2.0.0.0
+#AutoIt3Wrapper_Res_LegalCopyright=Teodor Ionescu (MIT License)
 #AutoIt3Wrapper_Res_Language=1033
+#AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
 
@@ -151,7 +153,7 @@ Func RenderSettingsGui()
 				ConsoleWrite("updated HKCU\..\Run" & @lf)
 			EndIf
 
-			MsgBox(64, "VSAP", "The settings have been saved! Application will minimise itself in taskbar and watch for VLC windows. You may continue controlling it from there.", 0, $Window)
+			MsgBox(64, "VSAP", "The settings have been saved! Application will minimise itself in system tray and watch for VLC windows. You may continue controlling it from there.", 0, $Window)
 
 			GUIDelete()
 
